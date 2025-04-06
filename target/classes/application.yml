@@ -1,0 +1,24 @@
+server:
+  error:
+    include-message: always
+    include-stacktrace: never
+    include-exception: true
+spring:
+  application:
+    name: shoe_shop
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: true
+    change-log: db/changelog/master-changelog.xml
+    clear-checksums: true
+    drop-first: true
+jwt:
+  secret: 44vbOhW7I5RCz5O2cIZFrP5Jwm1Ko2XsdvquN1Pi7W2KVIA5EROzX2nuQM33cUThOxV1ZYeigcIbx9caGPS8HdutBtAtApU/W+V7HlI363hC/LFh9kxYn8B6Eq1aHZ2joAzHMZQzKRLB7CWsYhZrmXhP1VfrjcwfY/BoxtKuSBQ=
+  expiration-millis: 86400000

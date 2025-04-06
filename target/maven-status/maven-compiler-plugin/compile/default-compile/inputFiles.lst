@@ -1,0 +1,12 @@
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/ShoeShopApplication.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/config/SecurityConfig.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/exceptions/EntityAlreadyExistsException.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/exceptions/user/UserAlreadyExistsException.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/exceptions/user/UserNotFoundException.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/User.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/UserController.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/UserDtoMapper.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/UserRepository.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/UserRole.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/UserService.java
+/Users/antonrudkovsky/Projects/Java/shoe_shop/src/main/java/com/github/shoe_shop/user/dto/CreateUserDto.java

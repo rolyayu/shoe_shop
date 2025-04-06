@@ -1,0 +1,12 @@
+version: "3.0.0"
+
+services:
+  psql:
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: u
+      POSTGRES_DB: shoe_shop
