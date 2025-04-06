@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @Table(name = "sessions")
 public class Session extends CreateDateAuditableEntity {
     @Id
-    @SequenceGenerator(name = "session_seq", sequenceName = "session_seq")
+    @SequenceGenerator(name = "session_seq", sequenceName = "session_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "session_seq")
     private Long id;
 
