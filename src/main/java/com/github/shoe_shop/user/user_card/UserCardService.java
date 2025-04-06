@@ -45,14 +45,13 @@ public class UserCardService {
         }
 
         Workstation workstation = cardToCreate.getWorkstation();
-        if (workstation==null) {
-            throw new RuntimeException("No workstation provided for card " + cardToCreate.getCardNo());
+        if (workstation != null) {
+            workstation = workstationService.findByIP(workstation.getIp());
+            if (!workstation.getOrganization().equals(supposedOrganization)) {
+                throw new RuntimeException("Organizations are not matched for workstation with IP " + workstation.getIp());
+            }
+            cardToCreate.setWorkstation(workstation);
         }
-        workstation = workstationService.findByIP(workstation.getIp());
-        if (!workstation.getOrganization().equals(supposedOrganization)) {
-            throw new RuntimeException("Organizations are not matched for card " + cardToCreate.getCardNo());
-        }
-        cardToCreate.setWorkstation(workstation);
 
         return userCardRepository.save(cardToCreate);
     }

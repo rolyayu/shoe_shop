@@ -16,4 +16,5 @@
     <include file="db/changelog/organizations/create-workstation-changelog.xml"/>
     <include file="db/changelog/users/add-workstation-to-card-changelog.xml"/>
     <include file="db/changelog/sessions/create-session-changelog.xml"/>
+    <include file="db/changelog/users/unnecessary-attached-workstation-to-card-changelog.xml"/>
 </databaseChangeLog>

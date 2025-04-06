@@ -23,7 +23,7 @@ public class UserCard {
     private String cardNo;
 
     @ManyToOne
-    @JoinColumn(name = "workstation_ip", referencedColumnName = "ip", nullable = false)
+    @JoinColumn(name = "workstation_ip", referencedColumnName = "ip", nullable = true)
     private Workstation workstation;
 
     @OneToOne
