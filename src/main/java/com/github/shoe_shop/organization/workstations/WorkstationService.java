@@ -18,4 +18,9 @@ public class WorkstationService {
         workstation.setOrganization(foundedOrganization);
         return workstationRepository.save(workstation);
     }
+
+    public Workstation findByIP(final String ip) {
+        return workstationRepository.findById(ip)
+                .orElseThrow(() -> new EntityNotFoundException("No workstation attached to IP " + ip));
+    }
 }
