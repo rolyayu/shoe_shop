@@ -3,13 +3,14 @@ package com.github.shoe_shop.base.validators;
 import com.github.shoe_shop.base.constraints.IP;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 
 public class IPConstraintValidator implements ConstraintValidator<IP,String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return isIPv4(value) || isIPv6(value);
+        return !StringUtils.hasLength(value) || isIPv4(value) || isIPv6(value);
     }
 
     private boolean isIPv4(String address) {
