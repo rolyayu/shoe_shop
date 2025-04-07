@@ -56,6 +56,20 @@ public class UserCardService {
         return userCardRepository.save(cardToCreate);
     }
 
+    @Transactional
+    public UserCard updateCard(final UserCard cardToUpdate) {
+        final UserCard foundedCard = findByCardNo(cardToUpdate.getCardNo());
+        if (cardToUpdate.getAttachedWorker() != null) {
+            final UserInfo info = infoService.getInfoById(cardToUpdate.getAttachedWorker().getId());
+            foundedCard.setAttachedWorker(info);
+        }
+        if (cardToUpdate.getWorkstation() != null) {
+            final Workstation workstation = workstationService.findByIP(cardToUpdate.getWorkstation().getIp());
+            foundedCard.setWorkstation(workstation);
+        }
+        return userCardRepository.save(foundedCard);
+    }
+
     public UserCard findByCardNo(final String cardNo) {
         return userCardRepository.findById(cardNo)
                 .orElseThrow(() -> new EntityNotFoundException("Card with number " + cardNo + " not found"));
