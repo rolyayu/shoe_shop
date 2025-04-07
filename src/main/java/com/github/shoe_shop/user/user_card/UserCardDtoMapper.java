@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserCardDtoMapper {
-    public UserCard mapToEntity(final CreateCardDto dto) {
+    public UserCard mapCreateDtoToEntity(final CreateCardDto dto) {
         final UserCard card = new UserCard();
         card.setCardNo(dto.cardNo());
 

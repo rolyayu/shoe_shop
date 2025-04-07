@@ -20,6 +20,6 @@ public class UserCardController {
 
     @PostMapping
     public UserCard createCard(@Valid @RequestBody final CreateCardDto createCardDto) {
-        return cardService.createCard(dtoMapper.mapToEntity(createCardDto));
+        return cardService.createCard(dtoMapper.mapCreateDtoToEntity(createCardDto));
     }
 }
