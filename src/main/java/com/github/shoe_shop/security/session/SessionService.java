@@ -18,7 +18,7 @@ public class SessionService {
 
     private final WorkstationService workstationService;
 
-    public long deleteExpiredSessions() {
+    public int deleteExpiredSessions() {
         final LocalDateTime expirationDate = buildExpirationDate();
         return sessionRepository.deleteExpiredSessions(expirationDate);
     }

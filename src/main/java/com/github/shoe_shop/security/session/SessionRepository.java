@@ -14,7 +14,7 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     @Query(value = """
                 delete from Session s where s.lastPerformedActionDate < ?1
             """)
-    Long deleteExpiredSessions(final LocalDateTime expirationDate);
+    int deleteExpiredSessions(final LocalDateTime expirationDate);
 
     @Query(value = """
                 select s from Session s where s.workstation.ip = ?1 and s.lastPerformedActionDate > ?2 
