@@ -12,7 +12,7 @@ public class SessionScheduler {
 
     private final SessionService sessionService;
 
-    @Scheduled(cron = "* */20 9-18 * * *")
+    @Scheduled(cron = "0 */20 9-18 * * *")
     public void deleteExpiredSessions() {
         log.info("Start deleting expired sessions...");
         final int deletedSessionsCount = sessionService.deleteExpiredSessions();
