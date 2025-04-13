@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="14381304" author="Anton Rudkovsky">
+        <dropForeignKeyConstraint baseTableName="workstations" constraintName="workstation_organization_fk"/>
+        <dropColumn tableName="workstations" columnName="organization_unp"/>
+        <addColumn tableName="workstations">
+            <column name="branch_id" type="varchar">
+                <constraints unique="true" nullable="false" referencedTableName="branches"
+                             referencedColumnNames="branch_id"
+                             foreignKeyName="workstation_branch_fk"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
