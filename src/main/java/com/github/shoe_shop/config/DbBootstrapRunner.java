@@ -5,13 +5,13 @@ import com.github.shoe_shop.user.user.UserRepository;
 import com.github.shoe_shop.user.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("dev")
 @RequiredArgsConstructor
+@ConditionalOnProperty(value = "application.create-users-on-bootstrap", havingValue = "true", matchIfMissing = false)
 public class DbBootstrapRunner implements CommandLineRunner {
     private final PasswordEncoder encoder;
 
