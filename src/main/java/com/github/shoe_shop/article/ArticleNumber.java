@@ -36,6 +36,9 @@ public class ArticleNumber extends CreateDateAuditableEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_numbers_seq")
     private Long id;
 
+    @Column(nullable = false)
+    private String article;
+
     @Column(name = "shoe_size", nullable = false, updatable = false)
     private byte shoeSize;
 
@@ -48,10 +51,9 @@ public class ArticleNumber extends CreateDateAuditableEntity {
     @Column(name = "shoe_color", nullable = false, updatable = false)
     private String shoeColor;
 
+    @Column(name = "producer_country", nullable = false, updatable = false)
+    private String producerCountry;
+
     @Column(name = "default_price", nullable = false)
     private BigDecimal defaultPrice;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", name = "created_by_id")
-    private User createdBy;
 }
