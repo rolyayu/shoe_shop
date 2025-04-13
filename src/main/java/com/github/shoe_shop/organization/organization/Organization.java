@@ -1,12 +1,12 @@
-package com.github.shoe_shop.organization;
+package com.github.shoe_shop.organization.organization;
 
 import com.github.shoe_shop.base.CreateDateAuditableEntity;
+import com.github.shoe_shop.user.user_info.UserInfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Organization extends CreateDateAuditableEntity {
     @Id
     @EqualsAndHashCode.Include
-    @Column(name = "organization_unp", nullable = false, unique = true)
+    @Column(name = "organization_unp", nullable = false)
     private String unp;
 
     @Column(name = "organization_name", nullable = false)
@@ -29,4 +29,8 @@ public class Organization extends CreateDateAuditableEntity {
 
     @Column(name = "organization_address", nullable = false)
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "organization_head_info_id")
+    private UserInfo organizationHead;
 }
