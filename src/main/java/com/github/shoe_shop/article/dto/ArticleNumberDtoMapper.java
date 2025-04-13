@@ -13,6 +13,7 @@ public class ArticleNumberDtoMapper {
                 .shoeColor(createDto.shoeColor())
                 .shoeSize(createDto.shoeSize())
                 .shoeType(createDto.shoeType())
+                .producerCountry(createDto.producerCountry())
                 .build();
     }
 }

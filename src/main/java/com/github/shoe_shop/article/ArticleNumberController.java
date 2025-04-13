@@ -24,24 +24,10 @@ public class ArticleNumberController {
 
     private final ArticleNumberDtoMapper dtoMapper;
 
+    @Secured({"HEAD_OF_BRANCH", "ORGANIZATION_OWNER"})
     @PostMapping
-    public ArticleNumber createArticle(@CurrentUser final User currentUser,
-                                       @Valid @RequestBody final CreateArticleNumberDto createArticleNumberDto) {
-        return articleNumberService.create(
-                currentUser,
-                dtoMapper.dtoToEntity(createArticleNumberDto)
+    public ArticleNumber createArticle(@Valid @RequestBody final CreateArticleNumberDto createArticleNumberDto) {
+        return articleNumberService.create(dtoMapper.dtoToEntity(createArticleNumberDto)
         );
-    }
-
-    @GetMapping
-    public List<ArticleNumber> findArticlesOfCurrentUser(@CurrentUser final User user) {
-        return articleNumberService.findAllByUser(user);
-    }
-
-    @GetMapping
-    @RequestMapping("/by_user")
-    @Secured({"ADMIN"})
-    public List<ArticleNumber> findArticlesByUsername(@RequestParam final String username) {
-        return articleNumberService.findAllyByUsername(username);
     }
 }
