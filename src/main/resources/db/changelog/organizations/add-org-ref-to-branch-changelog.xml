@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="13481304" author="Anton Rudkovsky">
+        <dropColumn tableName="branches" columnName="organization_head_info_id"/>
+        <dropColumn tableName="branches" columnName="organization_name"/>
+        <dropColumn tableName="branches" columnName="organization_address"/>
+        <addForeignKeyConstraint baseTableName="branches" baseColumnNames="organization_unp" constraintName="branch_organization_fk"
+                                 referencedTableName="organizations"
+                                 referencedColumnNames="organization_unp"/>
+    </changeSet>
+</databaseChangeLog>
