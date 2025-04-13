@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="11221204" author="Anton Rudkovsky">
+        <createTable tableName="branches">
+            <column name="branch_no" type="varchar">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="branch_address" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="branch_head_info_id" type="bigint">
+                <constraints unique="true" nullable="false" referencedTableName="user_info" referencedColumnNames="id"
+                             foreignKeyName="branch_head_info_fk"/>
+            </column>
+            <column name="organization_head_info_id" type="bigint">
+                <constraints nullable="false" referencedTableName="user_info" referencedColumnNames="id"
+                             foreignKeyName="branch_organization_head_info_fk"/>
+            </column>
+            <column name="organization_unp" type="varchar">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="organization_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization_address" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
