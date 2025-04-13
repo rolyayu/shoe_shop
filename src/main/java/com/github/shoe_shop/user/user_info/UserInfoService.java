@@ -1,10 +1,9 @@
 package com.github.shoe_shop.user.user_info;
 
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
-import com.github.shoe_shop.organization.Organization;
-import com.github.shoe_shop.organization.OrganizationService;
 import com.github.shoe_shop.user.user.User;
 import com.github.shoe_shop.user.user.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,8 +18,6 @@ public class UserInfoService {
 
     private final UserService userService;
 
-    private final OrganizationService organizationService;
-
     @CachePut(cacheNames = "user_info", key = "#userId")
     public UserInfo createInfo(final UserInfo info, final Long userId) {
         final User user = userService.findById(userId);
@@ -29,18 +26,18 @@ public class UserInfoService {
             throw new EntityAlreadyExistsException("Info already exists for user " + userId);
         }
         info.setUser(user);
-        Organization organization = organizationService.findByUnp(info.getOrganization().getUnp());
-        info.setOrganization(organization);
         return userInfoRepository.save(info);
-    }
-
-    @Cacheable(cacheNames = "user_info", key = "#currentUser")
-    public UserInfo getInfoByUser(final User currentUser) {
-        return userInfoRepository.findByUser(currentUser).orElse(null);
     }
 
     @Cacheable(cacheNames = "user_info", key = "#id")
     public UserInfo getInfoById(final Long id) {
-        return userInfoRepository.findByUserId(id).orElse(null);
+        return userInfoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User info for given id not found"));
+    }
+
+    @Cacheable(cacheNames = "user_info", key = "#username")
+    public UserInfo findByUserUsername(final String username) {
+        return userInfoRepository.findByUserUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("User info for given username not found"));
     }
 }
