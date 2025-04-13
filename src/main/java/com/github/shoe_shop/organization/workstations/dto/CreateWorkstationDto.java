@@ -1,10 +1,11 @@
 package com.github.shoe_shop.organization.workstations.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.shoe_shop.base.constraints.IP;
-import com.github.shoe_shop.base.constraints.UNP;
+import org.hibernate.validator.constraints.UUID;
 
 public record CreateWorkstationDto(
-        @IP String ip,
-        @UNP String organizationUnp
+        @JsonProperty(required = true) @IP String ip,
+        @JsonProperty(required = true) @UUID String branchId
 ) {
 }
