@@ -7,7 +7,7 @@
     <changeSet id="45" author="Anton Rudkovsky">
         <createTable tableName="workstations">
             <column name="ip" type="varchar">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="workstation_ip_pk"/>
             </column>
             <column name="organization_unp" type="varchar">
                 <constraints referencedTableName="organizations" referencedColumnNames="organization_unp"
