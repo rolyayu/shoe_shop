@@ -1,6 +1,6 @@
-package com.github.shoe_shop.organization;
+package com.github.shoe_shop.organization.organization;
 
-import com.github.shoe_shop.organization.dto.CreateOrganizationDto;
+import com.github.shoe_shop.organization.organization.dto.CreateOrganizationDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
