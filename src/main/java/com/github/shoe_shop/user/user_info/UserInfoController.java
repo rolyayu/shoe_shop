@@ -30,7 +30,7 @@ public class UserInfoController {
     }
 
     @GetMapping
-    public UserInfo getCurrentUserInfo(@PathVariable("userId") final Long userId) {
+    public UserInfo getInfoByUserId(@PathVariable("userId") final Long userId) {
         return infoService.getInfoById(userId);
     }
 }
