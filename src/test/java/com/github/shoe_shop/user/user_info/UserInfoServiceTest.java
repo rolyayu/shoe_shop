@@ -4,6 +4,7 @@ import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
 import com.github.shoe_shop.user.user.User;
 import com.github.shoe_shop.user.user.UserRepository;
 import com.github.shoe_shop.user.user.UserRole;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import shared.BaseContainerTest;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -76,5 +78,42 @@ class UserInfoServiceTest extends BaseContainerTest {
         userInfoRepository.save(userInfo);
 
         assertThrows(EntityAlreadyExistsException.class, () -> userInfoService.createInfo(userInfo, user.getId()));
+    }
+
+    @Test
+    public void getInfoById_returnFoundedInfo_ifExists() {
+        final User createdUser = userRepository.save(user);
+        userInfo.setUser(createdUser);
+        final UserInfo savedUserInfo = userInfoRepository.save(userInfo);
+
+        final UserInfo foundedUserInfo = userInfoService.getInfoById(savedUserInfo.getId());
+
+        assertNotNull(foundedUserInfo);
+        assertEquals(savedUserInfo, foundedUserInfo);
+    }
+
+    @Test
+    public void getInfoById_ThrowsNotFoundExceptions_whenNotExists() {
+        assertThrows(EntityNotFoundException.class, () -> userInfoService.getInfoById(1L));
+    }
+
+    @Test
+    public void findByUserUsername_returnFoundedInfo_ifAttachedToUser() {
+        final User createdUser = userRepository.save(user);
+        userInfo.setUser(createdUser);
+        final UserInfo savedInfo = userInfoRepository.save(userInfo);
+
+        final UserInfo foundedUserInfo = userInfoService.findByUserUsername(createdUser.getUsername());
+
+        assertEquals(savedInfo, foundedUserInfo);
+    }
+
+    @Test
+    public void findByUserUsername_ThrowsNotFoundExceptions_whenNotAttachedToUser() {
+        final User createdUser = userRepository.save(user);
+        userInfo.setUser(createdUser);
+        userInfoRepository.save(userInfo);
+
+        assertThrows(EntityNotFoundException.class, () -> userInfoService.findByUserUsername(user.getUsername() + UUID.randomUUID()));
     }
 }
