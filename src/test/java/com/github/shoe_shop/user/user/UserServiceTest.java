@@ -1,15 +1,16 @@
 package com.github.shoe_shop.user.user;
 
+import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.authentication.BadCredentialsException;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 class UserServiceTest {
@@ -50,6 +51,6 @@ class UserServiceTest {
     void createUser_shouldThrowBadCredentialsException_whenUsernameAlreadyExists() {
         when(repository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
 
-        assertThrows(BadCredentialsException.class, () -> service.createUser(user));
+        assertThrows(EntityAlreadyExistsException.class, () -> service.createUser(user));
     }
 }
