@@ -19,5 +19,10 @@ public class TestContainerWithUser extends BaseTestContainer {
     @BeforeEach
     protected void resetUser() {
         user.setId(null);
+        setUserRole(UserRole.ORGANIZATION_OWNER);
+    }
+
+    protected static void setUserRole(final UserRole newRole) {
+        user.setRole(newRole);
     }
 }
