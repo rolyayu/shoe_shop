@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import shared.BaseContainerTest;
+import shared.BaseTestContainer;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UserInfoRepositoryTest extends BaseContainerTest {
+class UserInfoRepositoryTest extends BaseTestContainer {
     private static User user;
 
     private static UserInfo userInfo;

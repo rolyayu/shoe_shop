@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import shared.BaseContainerTest;
+import shared.BaseTestContainer;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-class UserInfoServiceTest extends BaseContainerTest {
+class UserInfoServiceTest extends BaseTestContainer {
     private static User user;
 
     private static UserInfo userInfo;

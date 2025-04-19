@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import shared.BaseContainerTest;
+import shared.BaseTestContainer;
 
 import java.time.LocalDate;
 
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserInfoControllerTest extends BaseContainerTest {
+class UserInfoControllerTest extends BaseTestContainer {
 
     private static final ObjectMapper mapper = new ObjectMapper();
     private static User user;
