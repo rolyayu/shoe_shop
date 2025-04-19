@@ -7,8 +7,6 @@ import com.github.shoe_shop.user.user.UserRole;
 import com.github.shoe_shop.user.user_info.UserInfo;
 import com.github.shoe_shop.user.user_info.UserInfoService;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +14,7 @@ import org.springframework.stereotype.Service;
 public class OrganizationService {
     private final OrganizationRepository organizationRepository;
 
-    @Setter(onMethod_ = {@Autowired})
-    private UserInfoService userInfoService;
+    private final UserInfoService userInfoService;
 
     public Organization createOrganization(final Organization organization) {
         final boolean unpRegistered = organizationRepository.existsByUnp(organization.getUnp());
@@ -25,7 +22,7 @@ public class OrganizationService {
             throw new EntityAlreadyExistsException("Organization with given UNP already registered.");
         }
         final UserInfo head = userInfoService.getInfoById(organization.getOrganizationHead().getId());
-        if (head.getUser().getRole()!= UserRole.ORGANIZATION_OWNER) {
+        if (head.getUser().getRole() != UserRole.ORGANIZATION_OWNER) {
             throw new BadArgumentsException("Given user cannot be owner of organization");
         }
         return organizationRepository.save(organization);
