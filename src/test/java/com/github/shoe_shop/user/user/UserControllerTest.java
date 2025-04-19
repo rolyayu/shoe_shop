@@ -3,7 +3,6 @@ package com.github.shoe_shop.user.user;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.shoe_shop.user.user.dto.CreateUserDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import shared.BaseTestContainer;
+import shared.TestContainerWithUser;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -20,20 +19,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserControllerTest extends BaseTestContainer {
+class UserControllerTest extends TestContainerWithUser {
 
     @Autowired
     private MockMvc mvc;
-
-    private User user;
-
-    @BeforeEach
-    void setUpUser() {
-        user = new User();
-        user.setUsername("administrator");
-        user.setEncodedPassword("password");
-        user.setRole(UserRole.ADMINISTRATOR);
-    }
 
     @Test
     @WithMockUser(authorities = {"ADMINISTRATOR"})

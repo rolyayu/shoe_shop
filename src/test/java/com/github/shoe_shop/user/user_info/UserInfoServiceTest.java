@@ -3,17 +3,14 @@ package com.github.shoe_shop.user.user_info;
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
 import com.github.shoe_shop.user.user.User;
 import com.github.shoe_shop.user.user.UserRepository;
-import com.github.shoe_shop.user.user.UserRole;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import shared.BaseTestContainer;
+import shared.TestContainerWithUserAndInfo;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,10 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-class UserInfoServiceTest extends BaseTestContainer {
-    private static User user;
-
-    private static UserInfo userInfo;
+class UserInfoServiceTest extends TestContainerWithUserAndInfo {
 
     @Autowired
     private UserInfoService userInfoService;
@@ -35,28 +29,11 @@ class UserInfoServiceTest extends BaseTestContainer {
     @Autowired
     private UserRepository userRepository;
 
-    @BeforeAll
-    static void setUpUsers() {
-        user = new User();
-        user.setId(1L);
-        user.setUsername("ShoeShop");
-        user.setEncodedPassword("password");
-        user.setRole(UserRole.ORGANIZATION_OWNER);
-
-        userInfo = new UserInfo();
-        userInfo.setBirthDate(LocalDate.of(2003, 1, 27));
-        userInfo.setFullName("Shoe Shop");
-        userInfo.setGender(Gender.MALE);
-    }
-
     @BeforeEach
     @Transactional
     void setUpDB() {
         userInfoRepository.deleteAll();
         userRepository.deleteAll();
-        userInfo.setUser(null);
-        userInfo.setId(null);
-        user.setId(null);
     }
 
     @Test
