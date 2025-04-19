@@ -1,5 +1,6 @@
 package com.github.shoe_shop.organization.branch;
 
+import com.github.shoe_shop.exceptions.BadArgumentsException;
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
 import com.github.shoe_shop.organization.organization.Organization;
 import com.github.shoe_shop.organization.organization.OrganizationService;
@@ -24,16 +25,16 @@ public class BranchService {
 
         final UserInfo headOfBranch = userInfoService.getInfoById(branch.getBranchHead().getId());
         if (headOfBranch.getUser().getRole() != UserRole.HEAD_OF_BRANCH) {
-            throw new RuntimeException("Given user cannot be head of branch");
+            throw new BadArgumentsException("Given user cannot be head of branch");
         }
         final boolean headAlreadyHasBranch = branchRepository.findByBranchHead(headOfBranch).isPresent();
         if (headAlreadyHasBranch) {
-            throw new RuntimeException("Given head of branch already has it's own branch");
+            throw new BadArgumentsException("Given head of branch already has it's own branch");
         }
 
         final boolean branchAlreadyExists = branchRepository.findByOrganizationUnpAndBranchNo(orgUnp, branch.getBranchNo()).isPresent();
         if (branchAlreadyExists) {
-            throw new EntityAlreadyExistsException("Branch already exists");
+            throw new EntityAlreadyExistsException("Branch with given No already exists in this organization.");
         }
 
         branch.setOrganization(organization);
