@@ -1,10 +1,11 @@
 package com.github.shoe_shop.organization.organization;
 
+import com.github.shoe_shop.exceptions.BadArgumentsException;
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
+import com.github.shoe_shop.exceptions.EntityNotFoundException;
 import com.github.shoe_shop.user.user.UserRole;
 import com.github.shoe_shop.user.user_info.UserInfo;
 import com.github.shoe_shop.user.user_info.UserInfoService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,8 @@ public class OrganizationService {
             throw new EntityAlreadyExistsException("Organization with given UNP already registered.");
         }
         final UserInfo head = userInfoService.getInfoById(organization.getOrganizationHead().getId());
-        if (head == null) {
-            throw new EntityNotFoundException("Head info not found. Maybe you're giving user id instead of user info id");
-        }
         if (head.getUser().getRole()!= UserRole.ORGANIZATION_OWNER) {
-            throw new RuntimeException("Given user cannot be owner of organization");
+            throw new BadArgumentsException("Given user cannot be owner of organization");
         }
         return organizationRepository.save(organization);
     }
