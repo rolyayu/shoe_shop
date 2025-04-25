@@ -10,6 +10,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import javax.naming.AuthenticationException;
 
@@ -31,7 +32,11 @@ public class GlobalAdviceController {
             return new ResponseEntity<>(authenticationException.getMessage(), HttpStatus.UNAUTHORIZED);
         } else if (e instanceof HttpMessageNotReadableException httpMessageNotReadableException) {
             return new ResponseEntity<>(httpMessageNotReadableException.getMessage(), HttpStatus.BAD_REQUEST);
-        } else {
+        } else if (e instanceof HandlerMethodValidationException handlerMethodValidationException) {
+            log.error("",handlerMethodValidationException);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        else {
             return ResponseEntity.internalServerError().body("Unknown exception with message: " + e.getMessage());
         }
     }
