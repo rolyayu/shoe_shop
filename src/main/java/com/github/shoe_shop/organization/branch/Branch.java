@@ -3,6 +3,7 @@ package com.github.shoe_shop.organization.branch;
 import com.github.shoe_shop.base.CreateDateAuditableEntity;
 import com.github.shoe_shop.organization.organization.Organization;
 import com.github.shoe_shop.user.user_info.UserInfo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -40,7 +41,7 @@ public class Branch extends CreateDateAuditableEntity {
     private String branchAddress;
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "organization_unp", referencedColumnName = "organization_unp")
     private Organization organization;
 
