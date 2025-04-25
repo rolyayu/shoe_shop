@@ -1,9 +1,9 @@
 package com.github.shoe_shop.user.user_info;
 
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
+import com.github.shoe_shop.exceptions.EntityNotFoundException;
 import com.github.shoe_shop.user.user.User;
 import com.github.shoe_shop.user.user.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
