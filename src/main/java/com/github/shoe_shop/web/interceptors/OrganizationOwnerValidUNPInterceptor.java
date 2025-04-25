@@ -1,5 +1,6 @@
 package com.github.shoe_shop.web.interceptors;
 
+import com.github.shoe_shop.exceptions.EntityNotFoundException;
 import com.github.shoe_shop.organization.organization.Organization;
 import com.github.shoe_shop.organization.organization.OrganizationService;
 import com.github.shoe_shop.user.user.UserRole;
@@ -45,9 +46,16 @@ public class OrganizationOwnerValidUNPInterceptor implements HandlerInterceptor 
                 return false;
             }
 
-            final UserInfo currentUserInfo = userInfoService.findByUserUsername(authentication.getName());
-            final Organization organization = organizationService.findByUnp(unp);
-            if (organization == null) {
+            UserInfo currentUserInfo = null;
+            try {
+                currentUserInfo = userInfoService.findByUserUsername(authentication.getName());
+            } catch (EntityNotFoundException e) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+            }
+            Organization organization = null;
+            try {
+                organization = organizationService.findByUnp(unp);
+            } catch (EntityNotFoundException e) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "UNP is not found");
                 return false;
             }
