@@ -2,12 +2,12 @@ package com.github.shoe_shop.organization.branch;
 
 import com.github.shoe_shop.exceptions.BadArgumentsException;
 import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
+import com.github.shoe_shop.exceptions.EntityNotFoundException;
 import com.github.shoe_shop.organization.organization.Organization;
 import com.github.shoe_shop.organization.organization.OrganizationService;
 import com.github.shoe_shop.user.user.UserRole;
 import com.github.shoe_shop.user.user_info.UserInfo;
 import com.github.shoe_shop.user.user_info.UserInfoService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
