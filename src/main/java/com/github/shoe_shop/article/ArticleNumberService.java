@@ -1,26 +1,29 @@
 package com.github.shoe_shop.article;
 
-import com.github.shoe_shop.user.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
 public class ArticleNumberService {
     private final ArticleNumberRepository repository;
 
-    public ArticleNumber create(User currentUser, ArticleNumber articleNumber) {
-        articleNumber.setCreatedBy(currentUser);
+    public ArticleNumber create(final ArticleNumber articleNumber) {
+        articleNumber.setArticle(buildArticle(articleNumber));
         return repository.save(articleNumber);
     }
 
-    public List<ArticleNumber> findAllByUser(User user) {
-        return repository.findAllByCreatedBy(user);
-    }
-
-    public List<ArticleNumber> findAllyByUsername(final String username) {
-        return repository.findAllByCreatedByUsername(username);
+    public String buildArticle(final ArticleNumber articleNumber) {
+        final StringBuilder article = new StringBuilder();
+        article.append(articleNumber.getBrandName().toUpperCase(Locale.ROOT), 0, 3);
+        article.append('-');
+        article.append(articleNumber.getProducerCountry().toUpperCase(Locale.ROOT), 0, 3);
+        article.append('-');
+        article.append(articleNumber.getShoeType().toUpperCase(Locale.ROOT), 0, 2);
+        article.append(articleNumber.getShoeSize());
+        article.append(articleNumber.getShoeColor().toUpperCase(Locale.ROOT), 0, 3);
+        return article.toString();
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1403" author="Anton Rudkovsky">
+        <dropForeignKeyConstraint baseTableName="user_info" constraintName="user_info_organization_fk"/>
+        <dropColumn tableName="user_info" columnName="organization_unp"/>
+        <dropColumn tableName="user_info" columnName="job_position"/>
+        <addColumn tableName="user_info">
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

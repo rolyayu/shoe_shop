@@ -1,0 +1,21 @@
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    #    TODO move db credentials to secret manager
+    driver-class-name: org.postgresql.Driver
+    username: u
+    password: 1
+    url: jdbc:postgresql://localhost:5432/shoe_shop
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/shoe_shop
+    user: u
+    password: 1
+logging:
+  level:
+    org.springframework: info
+#    TODO move secret to secret manager
+  jwt:
+    secret: 44vbOhW7I5RCz5O2cIZFawdg8SrP5Jwm1Ko2XsdvquN1Pi7W2KVIA5EROzX2nuQM33cUThOxV1ZYeigcIbx9caGPS8HdutBtAtApU/W+V7HlI363hC/LFh9kxYn8B6Eq1aHZ2joAzHMZQzKRLB7CWsYhZrmXhP1VfrjcwfY/BoxtKuSBQ=
+    expiration-millis: 86400000

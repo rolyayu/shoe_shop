@@ -1,27 +1,26 @@
 package com.github.shoe_shop.security.login;
 
+import com.github.shoe_shop.security.shared.BaseAuthenticationFilter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationConverter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @Setter
-public class LoginAuthenticationFilter extends OncePerRequestFilter {
+public class LoginAuthenticationFilter extends BaseAuthenticationFilter {
 
-    private RequestMatcher matcher;
+    private RequestMatcher authenticationMatcher;
 
     private AuthenticationConverter authenticationConverter;
 
@@ -30,7 +29,7 @@ public class LoginAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (!matcher.matches(request)) {
+        if (!authenticationMatcher.matches(request)) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -50,5 +49,24 @@ public class LoginAuthenticationFilter extends OncePerRequestFilter {
         context.setAuthentication(currentAuth);
         SecurityContextHolder.setContext(context);
         filterChain.doFilter(request,response);
+    }
+
+    @Override
+    protected Authentication performeAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        try {
+            final Authentication authentication = authenticationConverter.convert(request);
+            if (authentication == null) {
+                return null;
+            }
+            final Authentication currentAuth = authenticationManager.authenticate(authentication);
+            return authentication;
+        } catch (Exception e) {
+            throw new BadCredentialsException("Bad credentials", e);
+        }
+    }
+
+    @Override
+    protected RequestMatcher getAuthenticationMatcher() {
+        return authenticationMatcher;
     }
 }

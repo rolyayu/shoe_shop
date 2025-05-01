@@ -1,8 +1,7 @@
 package com.github.shoe_shop.exceptions;
 
-import jakarta.persistence.PersistenceException;
 
-public class EntityAlreadyExistsException extends PersistenceException {
+public class EntityAlreadyExistsException extends RuntimeException {
     public EntityAlreadyExistsException(String message) {
         super(message);
     }

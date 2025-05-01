@@ -4,6 +4,7 @@ import com.github.shoe_shop.base.ApiEndpoints;
 import com.github.shoe_shop.security.jwt.JwtFilter;
 import com.github.shoe_shop.security.jwt.JwtService;
 import com.github.shoe_shop.security.login.LoginAuthenticationFilter;
+import com.github.shoe_shop.security.shared.SkipRequestMatcher;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class FilterConfig {
         final RequestMatcher signInMatcher = new AntPathRequestMatcher(apiEndpoints.getAuthSignIn());
         final RequestMatcher signUpMatcher = new AntPathRequestMatcher(apiEndpoints.getAuthSignUp());
         final RequestMatcher skipMatcher = RequestMatchers.anyOf(signInMatcher,signUpMatcher);
-        filter.setSkipMatcher(skipMatcher);
+        filter.setSkipMatcher(new SkipRequestMatcher(skipMatcher));
         return filter;
     }
 
@@ -49,7 +50,7 @@ public class FilterConfig {
         final RequestMatcher matcher = new AntPathRequestMatcher(apiEndpoints.getAuthSignIn());
         filter.setAuthenticationConverter(loginAuthenticationConverter);
         filter.setAuthenticationManager(manager);
-        filter.setMatcher(matcher);
+        filter.setAuthenticationMatcher(matcher);
         return filter;
     }
 

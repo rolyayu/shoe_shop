@@ -1,10 +1,10 @@
 package com.github.shoe_shop.user.user;
 
-import jakarta.persistence.EntityNotFoundException;
+import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
+import com.github.shoe_shop.exceptions.EntityNotFoundException;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,14 +18,14 @@ public class UserService {
     public User createUser(@NonNull final User userToCreate) {
         final Optional<User> foundedUser = userRepository.findByUsername(userToCreate.getUsername());
         if (foundedUser.isPresent()) {
-            throw new BadCredentialsException("User with username " + userToCreate.getUsername() + " already exists");
+            throw new EntityAlreadyExistsException("User already exists");
         }
         return userRepository.save(userToCreate);
     }
 
     public User findByUsername(@NonNull final String username) {
         final Optional<User> userOptional = userRepository.findByUsername(username);
-        return userOptional.orElseThrow(() -> new BadCredentialsException("User with username " + username + " not found"));
+        return userOptional.orElseThrow(() -> new EntityNotFoundException("User with username " + username + " not found"));
     }
 
     public User findById(@NonNull final Long id) {

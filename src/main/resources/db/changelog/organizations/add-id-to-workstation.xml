@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="15121304" author="Anton Rudkovsky">
+        <dropPrimaryKey tableName="workstations" constraintName="workstation_ip_pk" dropIndex="true"/>
+        <createSequence sequenceName="workstation_seq" startValue="1" incrementBy="1"/>
+        <addColumn tableName="workstations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="workstation_id_pk"/>
+            </column>
+        </addColumn>
+        <addUniqueConstraint tableName="workstations" columnNames="ip" constraintName="workstation_ip_uk"/>
+    </changeSet>
+</databaseChangeLog>

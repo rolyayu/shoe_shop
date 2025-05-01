@@ -12,9 +12,15 @@
     <include file="db/changelog/organizations/create-organization-changelog.xml"/>
     <include file="db/changelog/users/add-organization-to-info-changelog.xml"/>
     <include file="db/changelog/organizations/add-created-at-changelog.xml"/>
-    <include file="db/changelog/users/create-card-changelog.xml"/>
     <include file="db/changelog/organizations/create-workstation-changelog.xml"/>
-    <include file="db/changelog/users/add-workstation-to-card-changelog.xml"/>
-    <include file="db/changelog/sessions/create-session-changelog.xml"/>
-    <include file="db/changelog/users/unnecessary-attached-workstation-to-card-changelog.xml"/>
+    <include file="/db/changelog/articles/rethink-articles-changelog.xml"/>
+    <include file="/db/changelog/organizations/add-head-info-changelog.xml"/>
+    <include file="/db/changelog/organizations/rename-organization-owner-column-changelog.xml"/>
+    <include file="/db/changelog/organizations/create-branch-changelog.xml"/>
+    <include file="/db/changelog/users/rethink-user-info-changelog.xml"/>
+    <include file="/db/changelog/organizations/add-org-ref-to-branch-changelog.xml"/>
+    <include file="/db/changelog/organizations/add-type-to-branch-changelog.xml"/>
+    <include file="/db/changelog/organizations/add-id-to-branch-changelog.xml"/>
+    <include file="/db/changelog/organizations/replace-org-with-branch-in-workstation-changelog.xml"/>
+    <include file="/db/changelog/organizations/add-id-to-workstation.xml"/>
 </databaseChangeLog>

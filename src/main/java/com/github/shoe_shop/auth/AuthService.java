@@ -1,6 +1,8 @@
 package com.github.shoe_shop.auth;
 
 import com.github.shoe_shop.auth.dto.AuthDto;
+import com.github.shoe_shop.exceptions.EntityAlreadyExistsException;
+import com.github.shoe_shop.exceptions.IncorrectCredentialsException;
 import com.github.shoe_shop.security.jwt.JwtService;
 import com.github.shoe_shop.user.user.User;
 import com.github.shoe_shop.user.user.UserRole;
@@ -27,7 +29,11 @@ public class AuthService {
                 .encodedPassword(encodedPassword)
                 .role(UserRole.CASHIER)
                 .build();
-        return userService.createUser(user);
+        try {
+            return userService.createUser(user);
+        } catch (EntityAlreadyExistsException e) {
+            throw new IncorrectCredentialsException("Given username is already taken", e);
+        }
     }
 
     public String signIn(final Authentication authentication) {

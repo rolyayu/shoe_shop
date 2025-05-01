@@ -8,6 +8,6 @@ public class UserDtoMapper {
     public User createDtoToUser(final CreateUserDto createUserDto) {
         return User.builder().username(createUserDto.username())
                 .encodedPassword(createUserDto.password())
-                .role(UserRole.CASHIER).build();
+                .role(UserRole.valueOf(createUserDto.role())).build();
     }
 }
