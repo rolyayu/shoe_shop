@@ -24,7 +24,7 @@ public class WorkstationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/ip/{ip}/branch/{branch_id}")
-    public Workstation createWorkstation(@PathVariable @Valid @IP String ip, @PathVariable("branch_id") @Valid @IP String branchId) {
+    public Workstation createWorkstation(@PathVariable @Valid @IP String ip, @PathVariable("branch_id") @Valid @UUID String branchId) {
         final Workstation workstationToCreate = new Workstation();
         workstationToCreate.setIp(ip);
         return service.create(workstationToCreate, branchId);
