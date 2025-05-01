@@ -8,4 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface WorkstationRepository extends CrudRepository<Workstation, Long> {
+    boolean existsByIp(final String Ip);
 }
