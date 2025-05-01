@@ -2,6 +2,7 @@ package com.github.shoe_shop.organization.workstations;
 
 import com.github.shoe_shop.base.CreateDateAuditableEntity;
 import com.github.shoe_shop.organization.branch.Branch;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Workstation extends CreateDateAuditableEntity {
     @Column(nullable = false, unique = true)
     private String ip;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "branch_id", referencedColumnName = "branch_id", nullable = false)
     private Branch branch;
 
