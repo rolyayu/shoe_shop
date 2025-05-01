@@ -15,7 +15,7 @@ public class IPConstraintValidator implements ConstraintValidator<IP,String> {
 
     private boolean isIPv4(String address) {
         return Arrays.stream(address.split("\\.")).map(String::trim)
-                .filter(subAddress -> !subAddress.startsWith("0"))
+                .filter(subAddress -> subAddress.equals("0") || !subAddress.startsWith("0"))
                 .map(Integer::parseInt)
                 .filter(subAddress -> subAddress >= 0 && subAddress <= 255)
                 .count() == 4;
