@@ -1,6 +1,6 @@
 package com.github.shoe_shop.security.config;
 
-import com.github.shoe_shop.base.ApiEndpoints;
+import com.github.shoe_shop.shared.ApiEndpoints;
 import com.github.shoe_shop.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

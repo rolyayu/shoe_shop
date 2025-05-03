@@ -1,6 +1,6 @@
-package com.github.shoe_shop.base.constraints;
+package com.github.shoe_shop.shared.constraints;
 
-import com.github.shoe_shop.base.validators.CardNoConstrainValidator;
+import com.github.shoe_shop.shared.validators.UNPConstraintValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -9,11 +9,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
-@Constraint(validatedBy = CardNoConstrainValidator.class)
-public @interface CardNo {
-    String message() default "Given string in not card number";
+@Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = UNPConstraintValidator.class)
+public @interface UNP {
+    String message() default "Given string in not UNP";
 
     Class<?>[] groups() default {};
 

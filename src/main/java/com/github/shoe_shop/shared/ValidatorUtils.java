@@ -1,4 +1,4 @@
-package com.github.shoe_shop.base;
+package com.github.shoe_shop.shared;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;

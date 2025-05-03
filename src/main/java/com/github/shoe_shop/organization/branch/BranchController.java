@@ -1,6 +1,6 @@
 package com.github.shoe_shop.organization.branch;
 
-import com.github.shoe_shop.base.constraints.UNP;
+import com.github.shoe_shop.shared.constraints.UNP;
 import com.github.shoe_shop.organization.branch.dto.CreateBranchDto;
 import com.github.shoe_shop.web.annotations.OrganizationOwnerValidUNP;
 import jakarta.validation.Valid;

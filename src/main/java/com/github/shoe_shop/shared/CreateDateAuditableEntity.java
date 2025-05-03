@@ -1,4 +1,4 @@
-package com.github.shoe_shop.base;
+package com.github.shoe_shop.shared;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

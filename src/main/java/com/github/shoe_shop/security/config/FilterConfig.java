@@ -1,6 +1,6 @@
 package com.github.shoe_shop.security.config;
 
-import com.github.shoe_shop.base.ApiEndpoints;
+import com.github.shoe_shop.shared.ApiEndpoints;
 import com.github.shoe_shop.security.jwt.JwtFilter;
 import com.github.shoe_shop.security.jwt.JwtService;
 import com.github.shoe_shop.security.shared.SkipRequestMatcher;

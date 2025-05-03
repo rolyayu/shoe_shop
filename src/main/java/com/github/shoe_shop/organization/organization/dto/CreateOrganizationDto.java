@@ -1,7 +1,7 @@
 package com.github.shoe_shop.organization.organization.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.shoe_shop.base.constraints.UNP;
+import com.github.shoe_shop.shared.constraints.UNP;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,6 +1,6 @@
-package com.github.shoe_shop.base.validators;
+package com.github.shoe_shop.shared.validators;
 
-import com.github.shoe_shop.base.constraints.UNP;
+import com.github.shoe_shop.shared.constraints.UNP;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

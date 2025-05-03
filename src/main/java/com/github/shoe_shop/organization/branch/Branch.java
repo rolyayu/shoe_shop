@@ -1,6 +1,6 @@
 package com.github.shoe_shop.organization.branch;
 
-import com.github.shoe_shop.base.CreateDateAuditableEntity;
+import com.github.shoe_shop.shared.CreateDateAuditableEntity;
 import com.github.shoe_shop.organization.organization.Organization;
 import com.github.shoe_shop.user.user_info.UserInfo;
 import jakarta.persistence.CascadeType;

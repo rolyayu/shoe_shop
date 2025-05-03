@@ -1,6 +1,6 @@
-package com.github.shoe_shop.base.constraints;
+package com.github.shoe_shop.shared.constraints;
 
-import com.github.shoe_shop.base.validators.UNPConstraintValidator;
+import com.github.shoe_shop.shared.validators.IPConstraintValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -9,12 +9,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UNPConstraintValidator.class)
-public @interface UNP {
-    String message() default "Given string in not UNP";
-
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Constraint(validatedBy = IPConstraintValidator.class)
+public @interface IP {
+    String message() default "Given string in not IP";
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};

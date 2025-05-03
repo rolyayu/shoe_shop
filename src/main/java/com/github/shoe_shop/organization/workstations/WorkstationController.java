@@ -1,6 +1,6 @@
 package com.github.shoe_shop.organization.workstations;
 
-import com.github.shoe_shop.base.constraints.IP;
+import com.github.shoe_shop.shared.constraints.IP;
 import com.github.shoe_shop.web.annotations.RequestIP;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

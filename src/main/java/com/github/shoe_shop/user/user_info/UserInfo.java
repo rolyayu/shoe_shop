@@ -1,6 +1,6 @@
 package com.github.shoe_shop.user.user_info;
 
-import com.github.shoe_shop.base.CreateDateAuditableEntity;
+import com.github.shoe_shop.shared.CreateDateAuditableEntity;
 import com.github.shoe_shop.user.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

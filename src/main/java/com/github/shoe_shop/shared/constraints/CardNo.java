@@ -1,6 +1,6 @@
-package com.github.shoe_shop.base.constraints;
+package com.github.shoe_shop.shared.constraints;
 
-import com.github.shoe_shop.base.validators.IPConstraintValidator;
+import com.github.shoe_shop.shared.validators.CardNoConstrainValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -11,9 +11,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
-@Constraint(validatedBy = IPConstraintValidator.class)
-public @interface IP {
-    String message() default "Given string in not IP";
+@Constraint(validatedBy = CardNoConstrainValidator.class)
+public @interface CardNo {
+    String message() default "Given string in not card number";
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
