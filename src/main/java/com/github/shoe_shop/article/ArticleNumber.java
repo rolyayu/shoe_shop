@@ -36,7 +36,7 @@ public class ArticleNumber extends CreateDateAuditableEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_numbers_seq")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String article;
 
     @Column(name = "shoe_size", nullable = false, updatable = false)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="7350305" author="Anton Rudkovsky">
+        <addUniqueConstraint tableName="article_numbers" columnNames="article" constraintName="article_numbers_article_uk"/>
+        <createIndex tableName="article_numbers" indexName="article_numbers_article_index">
+            <column name="article"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

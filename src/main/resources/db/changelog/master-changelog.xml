@@ -24,4 +24,5 @@
     <include file="/db/changelog/organizations/replace-org-with-branch-in-workstation-changelog.xml"/>
     <include file="/db/changelog/organizations/add-id-to-workstation.xml"/>
     <include file="/db/changelog/articles/add-line-name-changelog.xml"/>
+    <include file="/db/changelog/articles/make-line-number-unique-changelog.xml"/>
 </databaseChangeLog>
