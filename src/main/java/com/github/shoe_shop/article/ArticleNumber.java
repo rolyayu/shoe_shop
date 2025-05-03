@@ -56,4 +56,7 @@ public class ArticleNumber extends CreateDateAuditableEntity {
 
     @Column(name = "default_price", nullable = false)
     private BigDecimal defaultPrice;
+
+    @Column(name = "line_name", nullable = false, updatable = false)
+    private String lineName;
 }
